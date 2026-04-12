@@ -1,0 +1,9 @@
+torch>=2.0.0
+torchinfo
+fastapi
+uvicorn
+sqlalchemy
+pandas
+numpy
+python-dotenv
+scikit-learn
