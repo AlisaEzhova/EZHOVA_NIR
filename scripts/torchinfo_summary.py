@@ -1,10 +1,9 @@
 """
-Скрипт для вывода архитектуры Neural BPR через torchinfo.
+Скрипт для вывода архитектуры Neural BPR через torchinfo и экспорта в ONNX.
 Запуск: python scripts/torchinfo_summary.py
 """
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from torchinfo import summary
 
 
@@ -34,7 +33,7 @@ class FastBPR(nn.Module):
             j: ID негативных товаров [batch_size]
             
         Returns:
-            Кортеж из скоров для позитивных и негативных товаров
+            tuple: (pos_scores, neg_scores)
         """
         u_emb = self.user_emb(u)
         i_emb = self.item_emb(i)
@@ -52,7 +51,7 @@ if __name__ == "__main__":
     print("=" * 70)
     print("Архитектура Neural BPR модели (torchinfo)")
     print("=" * 70)
-    print(f"Параметры: users={NUM_USERS:,}, items={NUM_ITEMS:,}, dim={EMBEDDING_DIM}")
+    print(f"users={NUM_USERS:,}, items={NUM_ITEMS:,}, dim={EMBEDDING_DIM}")
     print()
 
     model = FastBPR(NUM_USERS, NUM_ITEMS, EMBEDDING_DIM)
@@ -61,9 +60,9 @@ if __name__ == "__main__":
     summary(
         model,
         input_data=[
-            torch.randint(0, NUM_USERS, (BATCH_SIZE,)),   # u
-            torch.randint(0, NUM_ITEMS, (BATCH_SIZE,)),   # i
-            torch.randint(0, NUM_ITEMS, (BATCH_SIZE,))    # j
+            torch.randint(0, NUM_USERS, (BATCH_SIZE,)),
+            torch.randint(0, NUM_ITEMS, (BATCH_SIZE,)),
+            torch.randint(0, NUM_ITEMS, (BATCH_SIZE,))
         ],
         col_names=["input_size", "output_size", "num_params"],
         depth=2,
