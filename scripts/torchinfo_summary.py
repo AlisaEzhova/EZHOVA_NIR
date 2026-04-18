@@ -73,6 +73,18 @@ if __name__ == "__main__":
     print("Экспорт модели в ONNX для Netron")
     print("=" * 70)
 
+    # Устанавливаем onnx и onnxscript если их нет
+    try:
+        import onnx
+        import onnxscript
+    except ImportError:
+        print("Устанавливаем onnx и onnxscript...")
+        import subprocess
+        import sys
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "onnx", "onnxscript"])
+        import onnx
+        import onnxscript
+
     # Экспорт в ONNX
     dummy_u = torch.randint(0, NUM_USERS, (1,))
     dummy_i = torch.randint(0, NUM_ITEMS, (1,))
