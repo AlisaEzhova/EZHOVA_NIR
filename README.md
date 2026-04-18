@@ -1,18 +1,3 @@
-# Рекомендательная система на основе матричной факторизации (PyTorch)
-
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
-![Status](https://img.shields.io/badge/Status-Prototype-success)
-
-**Студент:** Ежова Алиса Михайловна  
-**Группа:** НБИбд-01-22  
-**Научный руководитель:** Малых Михаил Дмитриевич  
-**Научный консультант:** Левичев Игорь Владимирович
-
----
-
 # Прототип рекомендательной системы (ALS + Neural BPR)
 
 **Студент:** Ежова Алиса Михайловна  
